@@ -1,4 +1,4 @@
-.PHONY: all
+.PHONY: all install
 
 all: read_sudo_timestamp
 
@@ -7,3 +7,6 @@ LDFLAGS += -lrt
 
 read_sudo_timestamp: read_sudo_timestamp.c
 	$(CC) $(CFLAGS) $(LDFLAGS) -o read_sudo_timestamp read_sudo_timestamp.c
+
+install: read_sudo_timestamp
+	install -o root -g root -m u+rwxs,g+rx,o+rx read_sudo_timestamp /usr/local/bin/read_sudo_timestamp
