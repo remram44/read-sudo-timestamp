@@ -158,6 +158,9 @@ int main(int argc, char **argv) {
 
     FILE *fp = fopen(path, "rb");
     if(fp == NULL) {
+        if(errno == ENOENT) {
+            return EXIT_NO_MATCH;
+        }
         perror("Opening timestamp file");
         exit(EXIT_ERROR);
     }
